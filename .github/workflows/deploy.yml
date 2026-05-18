@@ -9,9 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Coolify deploy
+        env:
+          WEBHOOK: ${{ secrets.COOLIFY_WEBHOOK }}
+          TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+          CF_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
         run: |
-          curl -s -X GET "${{ secrets.COOLIFY_WEBHOOK }}" \
-            -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}" \
-            -H "CF-Access-Client-Id: ${{ secrets.CF_ACCESS_CLIENT_ID }}" \
-            -H "CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}" \
-            --fail-with-body --max-time 30
+          HTTP_CODE=$(curl -o /dev/null -s -w '%{http_code}' \
+            -H "Authorization: Bearer ${TOKEN}" \
+            -H "CF-Access-Client-Id: ${CF_ID}" \
+            -H "CF-Access-Client-Secret: ${CF_SECRET}" \
+            "${WEBHOOK}")
+          echo "HTTP status: ${HTTP_CODE}"
+          if [ "${HTTP_CODE}" -lt 200 ] || [ "${HTTP_CODE}" -ge 400 ]; then
+            echo "Deploy trigger failed with HTTP ${HTTP_CODE}"
+            exit 1
+          fi
