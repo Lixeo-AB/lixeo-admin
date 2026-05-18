@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lixeo Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface-hover: #232733;
+      --border: #2a2e3a;
+      --text: #e4e6ed;
+      --text-muted: #8b8fa3;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.12);
+      --green: #22c55e;
+      --green-soft: rgba(34, 197, 94, 0.12);
+      --amber: #f59e0b;
+      --amber-soft: rgba(245, 158, 11, 0.12);
+      --blue: #3b82f6;
+      --blue-soft: rgba(59, 130, 246, 0.12);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      padding-left: 0.25rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .card:hover {
+      background: var(--surface-hover);
+      border-color: var(--accent);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .card-icon.purple  { background: var(--accent-soft); color: var(--accent); }
+    .card-icon.green   { background: var(--green-soft);  color: var(--green);  }
+    .card-icon.amber   { background: var(--amber-soft);  color: var(--amber);  }
+    .card-icon.blue    { background: var(--blue-soft);    color: var(--blue);   }
+
+    .card-body { min-width: 0; }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    .card-url {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Lixeo AB</h1>
+      <p>Internal admin dashboard</p>
+    </header>
+
+    <div class="section">
+      <div class="section-title">Production Apps</div>
+      <div class="grid">
+        <a class="card" href="https://app.sttracker.se" target="_blank" rel="noopener">
+          <div class="card-icon green">ST</div>
+          <div class="card-body">
+            <div class="card-title">ST Tracker</div>
+            <div class="card-url">app.sttracker.se</div>
+          </div>
+        </a>
+        <a class="card" href="https://clocktracker.se" target="_blank" rel="noopener">
+          <div class="card-icon green">CT</div>
+          <div class="card-body">
+            <div class="card-title">ClockTracker</div>
+            <div class="card-url">clocktracker.se</div>
+          </div>
+        </a>
+        <a class="card" href="https://www.lixeo.se" target="_blank" rel="noopener">
+          <div class="card-icon purple">LX</div>
+          <div class="card-body">
+            <div class="card-title">Lixeo Website</div>
+            <div class="card-url">www.lixeo.se</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">In Development</div>
+      <div class="grid">
+        <a class="card" href="https://clinova.lixeo.cloud" target="_blank" rel="noopener">
+          <div class="card-icon amber">CL</div>
+          <div class="card-body">
+            <div class="card-title">Clinova</div>
+            <div class="card-url">clinova.lixeo.cloud</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Internal Tools</div>
+      <div class="grid">
+        <a class="card" href="https://signer.lixeo.cloud" target="_blank" rel="noopener">
+          <div class="card-icon blue">IS</div>
+          <div class="card-body">
+            <div class="card-title">Intyg Signer</div>
+            <div class="card-url">signer.lixeo.cloud</div>
+          </div>
+        </a>
+        <a class="card" href="https://load.lixeo.cloud" target="_blank" rel="noopener">
+          <div class="card-icon blue">LT</div>
+          <div class="card-body">
+            <div class="card-title">Load Tester</div>
+            <div class="card-url">load.lixeo.cloud</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Infrastructure</div>
+      <div class="grid">
+        <a class="card" href="https://145.223.118.11:8000" target="_blank" rel="noopener">
+          <div class="card-icon purple">C2</div>
+          <div class="card-body">
+            <div class="card-title">Coolify &mdash; KVM 2</div>
+            <div class="card-url">145.223.118.11:8000</div>
+          </div>
+        </a>
+        <a class="card" href="https://coolify-kvm4.lixeo.cloud" target="_blank" rel="noopener">
+          <div class="card-icon purple">C4</div>
+          <div class="card-body">
+            <div class="card-title">Coolify &mdash; KVM 4</div>
+            <div class="card-url">coolify-kvm4.lixeo.cloud</div>
+          </div>
+        </a>
+        <a class="card" href="https://72.60.135.12:8000" target="_blank" rel="noopener">
+          <div class="card-icon purple">C8</div>
+          <div class="card-body">
+            <div class="card-title">Coolify &mdash; KVM 8</div>
+            <div class="card-url">72.60.135.12:8000</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <footer>Lixeo AB &middot; admin.lixeo.cloud</footer>
+  </div>
+</body>
+</html>
